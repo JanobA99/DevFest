@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'file:///D:/flutter%20apklar/gtg_tashkent/lib/agenda/agendaHome.dart';
@@ -18,6 +19,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   final Color color = Colors.deepPurpleAccent;
   final double maxBubbleSize = 10.0;
 
+  Future<Map> getDataSpeakers() async {
+    result = (await FirebaseDatabase.instance.reference().child("speakers").once())
+        .value;
+    return result;
+  }
   @override
   void initState() {
     super.initState();
@@ -104,7 +110,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: (){
+                                onTap: () async {
+                                  await getDataSpeakers();
                                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>AgendaHome()));
                                 },
                                 child: Column(

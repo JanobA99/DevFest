@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/agenda/agendaHome.dart';
+import 'package:gtg_tashkent/home.dart';
 
 
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AgendaHome(),
+      home: HomeScreen(),
     );
   }
 }

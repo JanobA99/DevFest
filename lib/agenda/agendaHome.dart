@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/agenda/mobileScreen.dart';
 import 'package:gtg_tashkent/database.dart';
-
+Map result;
 class AgendaHome extends StatefulWidget {
   @override
   _AgendaHomeState createState() => _AgendaHomeState();
@@ -53,18 +53,9 @@ class Web extends StatefulWidget {
 }
 
 class _WebState extends State<Web> {
-  Map result;
   Query _query;
-
-  Future<Map> getDataSpeakers() async {
-    result = (await FirebaseDatabase.instance.reference().child("speakers").once())
-        .value;
-    return result;
-  }
-
   @override
   void initState() {
-    getDataSpeakers();
     Database.querySessions().then((Query query) {
       setState(() {
         _query = query;
