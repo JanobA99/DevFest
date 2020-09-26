@@ -1,35 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:gtg_tashkent/database.dart';
 
-class Mobile extends StatefulWidget {
-  @override
-  _MobileState createState() => _MobileState();
-}
-
-class _MobileState extends State<Mobile> {
-  String name;
-  String url;
-  Map result;
-  Query _query;
-  Future<Map> getDataSpeakers() async {
-    result =await (await FirebaseDatabase.instance.reference().child("speakers").once()).value;
-    return result;
-  }
-  @override
-  void initState() {
-    getDataSpeakers();
-    Database.querySessions().then((Query query) {
-      setState(() {
-        _query = query;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget buildList(BuildContext context, Query _query,  Map result, String type) {
+    String name;
+    String url;
     Widget body = new ListView(
       children: <Widget>[
         new ListTile(
@@ -49,11 +24,11 @@ class _MobileState extends State<Mobile> {
             int index,
             ) {
           Map map = snapshot.value;
-          print(snapshot.key);
+
           List tag = map['tags'] ;
           List speakers = map['speakers'] ;
           if(tag!=null){
-            if(tag[0]=="Web" && map['title'] !=null ){
+            if(tag[0]==type && map['title'] !=null ){
               result.forEach((key, value) {
                 if(speakers[0] == key){
                   url=value["photoUrl"];
@@ -94,7 +69,7 @@ class _MobileState extends State<Mobile> {
         appBar: AppBar(
           toolbarHeight: 35,
           backgroundColor: Colors.yellow,
-          title: Text("Cloud"),
+          title: Text(type),
           centerTitle: true,
           actions: [
             Icon(Icons.lightbulb_outline),
@@ -110,4 +85,3 @@ class _MobileState extends State<Mobile> {
         body: body
     );
   }
-}
