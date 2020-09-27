@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 )
                               ],
                             ),
-                            Image.network("https://camo.githubusercontent.com/c5100b2477d3c40aaabdb3d81ceeab0c09b6d14a/68747470733a2f2f692e696d6775722e636f6d2f503231486b30752e706e67"),
+                            Image.asset("assets/dev.png"),
                             Container(padding: EdgeInsets.all(7),child: Text("   DevFests are community-led, deleveloper events hosted by GDG   chapters around the globe focused on community building & learning about Google's technologies. Each DevFest is inspired by and uniquely tailored to the needs of the developer community and region that hosts it", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),))
                           ],
                         ),

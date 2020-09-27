@@ -11,6 +11,7 @@ class Database {
   }
   static Future<Query> queryDate() async {
     return FirebaseDatabase.instance
-        .reference();
+        .reference()
+        .child("schedule");
   }
 }

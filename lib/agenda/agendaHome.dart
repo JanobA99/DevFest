@@ -56,7 +56,7 @@ class _WebState extends State<Web> {
   Query _query;
   @override
   void initState() {
-    Database.querySessions().then((Query query) {
+    Database.queryDate().then((Query query) {
       setState(() {
         _query = query;
       });
