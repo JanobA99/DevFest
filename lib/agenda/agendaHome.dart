@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/agenda/mobileScreen.dart';
+import 'package:gtg_tashkent/agenda/vidget.dart';
 import 'package:gtg_tashkent/database.dart';
 Map result;
 class AgendaHome extends StatefulWidget {
@@ -56,7 +57,7 @@ class _WebState extends State<Web> {
   Query _query;
   @override
   void initState() {
-    Database.queryDate().then((Query query) {
+    Database.querySessions().then((Query query) {
       setState(() {
         _query = query;
       });

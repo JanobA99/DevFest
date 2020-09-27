@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///D:/flutter%20apklar/gtg_tashkent/lib/agenda/agendaHome.dart';
+import 'package:gtg_tashkent/agenda/agendaHome.dart';
+import 'package:gtg_tashkent/agenda/mobileScreen.dart';
+import 'package:gtg_tashkent/database.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -24,10 +26,72 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         .value;
     return result;
   }
+  Future<Map> getDataTime() async {
+    Database.queryDate().then((Query query) {
+      query.once().then((DataSnapshot snapshot){
+        Map map2 = snapshot.value;
+        List list5=[];
+        List list6=[];
+      map2.forEach((key, value) {
+        Map map=value;
+        for(int i=0; i<map["timeslots"].length; i++){
+
+          list5.add(map["timeslots"][i]["sessions"][0]["items"][0]);
+          String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+          String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+          String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+          String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+          list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+          if(map["timeslots"][i]["sessions"][0]["items"].length>1){
+            list5.add(map["timeslots"][i]["sessions"][0]["items"][1]);
+            String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+            String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+            String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+            String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+            list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+          }
+          if(map["timeslots"][i]["sessions"].length==2){
+            list5.add(map["timeslots"][i]["sessions"][1]["items"][0]);
+            String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+            String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+            String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+            String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+            list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+            if(map["timeslots"][i]["sessions"][1]["items"].length>1){
+              list5.add(map["timeslots"][i]["sessions"][1]["items"][1]);
+              String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+              String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+              String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+              String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+              list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+            }
+          }
+          if(map["timeslots"][i]["sessions"].length>2){
+            list5.add(map["timeslots"][i]["sessions"][2]["items"][0]);
+            String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+            String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+            String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+            String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+            list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+            if(map["timeslots"][i]["sessions"][2]["items"].length>1){
+              list5.add(map["timeslots"][i]["sessions"][2]["items"][1]);
+              String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
+              String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
+              String hourEnd=map["timeslots"][i]["endTime"].toString().substring(0,2);
+              String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
+              list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
+            }
+          }
+        }
+      });
+        timeMap=Map.fromIterables(list5, list6);
+      });
+    });
+    return timeMap;
+  }
   @override
   void initState() {
     super.initState();
-
     // Initialize bubbles
     bubbles = List();
     int i = numberOfBubbles;
@@ -112,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               GestureDetector(
                                 onTap: () async {
                                   await getDataSpeakers();
+                                  await getDataTime();
                                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>AgendaHome()));
                                 },
                                 child: Column(

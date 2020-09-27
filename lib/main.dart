@@ -4,6 +4,7 @@ import 'package:gtg_tashkent/home.dart';
 
 
 
+
 void main() {
   runApp(MyApp());
 }
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AgendaHome(),
+      home: HomeScreen(),
     );
   }
 }
