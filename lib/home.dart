@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       map2.forEach((key, value) {
         Map map=value;
         for(int i=0; i<map["timeslots"].length; i++){
-
           list5.add(map["timeslots"][i]["sessions"][0]["items"][0]);
           String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
           String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
@@ -50,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
             list6.add("${map["dateReadable"]} ${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
           }
-          if(map["timeslots"][i]["sessions"].length==2){
+          if(map["timeslots"][i]["sessions"].length>1){
             list5.add(map["timeslots"][i]["sessions"][1]["items"][0]);
             String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
             String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);

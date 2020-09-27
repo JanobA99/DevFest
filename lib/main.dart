@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gtg_tashkent/agenda/agendaHome.dart';
 import 'package:gtg_tashkent/home.dart';
-
-
 
 
 void main() {

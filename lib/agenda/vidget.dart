@@ -75,7 +75,6 @@ Widget buildList2(BuildContext context, Query _query,  Map result, String type) 
               }
             }
           }
-          Map map7=Map.fromIterables(list5, list6);
           return new Column(
             children: <Widget>[
               new ListTile(

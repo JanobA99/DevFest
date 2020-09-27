@@ -2,7 +2,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/agenda/mobileScreen.dart';
-import 'package:gtg_tashkent/agenda/vidget.dart';
 import 'package:gtg_tashkent/database.dart';
 Map result;
 class AgendaHome extends StatefulWidget {
@@ -11,7 +10,7 @@ class AgendaHome extends StatefulWidget {
 }
 
 class _AgendaHomeState extends State<AgendaHome> {
-  final List<Widget> _tabItems = [Web(type: "Web",), Web(type: "Android",), Web(type: "Cloud") ];
+  final List<Widget> _tabItems = [Web(type: "Web",), Web(type: "Android",), Web(type: "Cloud"),  Web(type: "All")];
   int _activePage = 1;
   @override
   void initState() {
@@ -32,6 +31,7 @@ class _AgendaHomeState extends State<AgendaHome> {
           items: <Widget>[
             Icon(Icons.add_shopping_cart, size: 30, color: Colors.black,),
             Icon(Icons.add, size: 30, color: Colors.black,),
+            Icon(Icons.people, size: 30, color: Colors.black,),
             Icon(Icons.people, size: 30, color: Colors.black,),
           ],
           onTap: (index) {
