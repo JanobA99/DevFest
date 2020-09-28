@@ -19,4 +19,9 @@ class Database {
         .reference()
         .child("speakers");
   }
+  static Future<Query> queryTeam() async {
+    return FirebaseDatabase.instance
+        .reference()
+        .child("team").child("0").child("members");
+  }
 }

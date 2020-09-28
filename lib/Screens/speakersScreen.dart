@@ -14,9 +14,7 @@ class SpeakersScreen extends StatefulWidget {
 
 class _SpeakersScreenState extends State<SpeakersScreen> {
   Query _query;
-  String name;
 
-  String time;
   @override
   void initState() {
     Database.querySpeakers().then((Query query) {

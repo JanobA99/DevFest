@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gtg_tashkent/agenda/agendaHome.dart';
-import 'package:gtg_tashkent/agenda/speakersHome.dart';
+import 'package:gtg_tashkent/Screens/agendaScreen.dart';
+import 'package:gtg_tashkent/Screens/speakersScreen.dart';
 import 'package:gtg_tashkent/database.dart';
 
 
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 onTap: () async {
                                   await getDataSpeakers();
                                   await getDataTime();
-                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>AgendaHome()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>AgendaListWidget()));
                                 },
                                 child: Column(
                                   children: <Widget>[

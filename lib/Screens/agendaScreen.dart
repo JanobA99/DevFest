@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/database.dart';
 Map result;
 Map timeMap;
-class AgendaHome extends StatefulWidget {
+class AgendaListWidget extends StatefulWidget {
   @override
-  _AgendaHomeState createState() => _AgendaHomeState();
+  _AgendaListWidgetState createState() => _AgendaListWidgetState();
 }
 
-class _AgendaHomeState extends State<AgendaHome> {
+class _AgendaListWidgetState extends State<AgendaListWidget> {
   final List<Widget> _tabItems = [AgendaScreen(type: "Cloud"), AgendaScreen(type: "Android"),  AgendaScreen(type: "Web"), AgendaScreen(type: "All")];
   int _activePage = 1;
   @override
