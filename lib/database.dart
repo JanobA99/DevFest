@@ -14,4 +14,9 @@ class Database {
         .reference()
         .child("schedule");
   }
+  static Future<Query> querySpeakers() async {
+    return FirebaseDatabase.instance
+        .reference()
+        .child("speakers");
+  }
 }

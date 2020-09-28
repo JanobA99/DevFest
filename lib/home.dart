@@ -4,8 +4,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/agenda/agendaHome.dart';
-import 'package:gtg_tashkent/agenda/mobileScreen.dart';
+import 'package:gtg_tashkent/agenda/speakersHome.dart';
 import 'package:gtg_tashkent/database.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -190,16 +191,21 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                   ],
                                 ),
                               ),
-                              Column(
-                                children: <Widget>[
-                                  Icon(Icons.person, color: Colors.green,),
-                                  Text('Speakers',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold
-                                    ),
-                                  )
-                                ],
+                              GestureDetector(
+                                onTap: ()  {
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>SpeakersScreen()));
+                                },
+                                child: Column(
+                                  children: <Widget>[
+                                    Icon(Icons.person, color: Colors.green,),
+                                    Text('Speakers',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                               Column(
                                 children: <Widget>[
