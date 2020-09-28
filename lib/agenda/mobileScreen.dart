@@ -17,6 +17,12 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
 
   if (_query != null) {
     body = new FirebaseAnimatedList(
+      defaultChild: Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+          strokeWidth: 2.0,
+        ),
+      ),
       query: _query,
       itemBuilder: (
           BuildContext context,
@@ -24,7 +30,6 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
           Animation<double> animation,
           int index,
           ) {
-        print(timeMap);
         Map map = snapshot.value;
         List tag = map['tags'] ;
         List speakers = map['speakers'] ;

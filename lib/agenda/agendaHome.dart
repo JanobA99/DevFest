@@ -10,7 +10,7 @@ class AgendaHome extends StatefulWidget {
 }
 
 class _AgendaHomeState extends State<AgendaHome> {
-  final List<Widget> _tabItems = [Web(type: "Web",), Web(type: "Android",), Web(type: "Cloud"),  Web(type: "All")];
+  final List<Widget> _tabItems = [Web(type: "Cloud"), Web(type: "Android"),  Web(type: "Web"), Web(type: "All")];
   int _activePage = 1;
   @override
   void initState() {
@@ -29,10 +29,10 @@ class _AgendaHomeState extends State<AgendaHome> {
           buttonBackgroundColor: Colors.yellow,
           backgroundColor: Colors.white,
           items: <Widget>[
-            Icon(Icons.add_shopping_cart, size: 30, color: Colors.black,),
-            Icon(Icons.add, size: 30, color: Colors.black,),
-            Icon(Icons.people, size: 30, color: Colors.black,),
-            Icon(Icons.people, size: 30, color: Colors.black,),
+            Icon(Icons.cloud, size: 30, color: Colors.black,),
+            Icon(Icons.smartphone, size: 30, color: Colors.black,),
+            Icon(Icons.web, size: 30, color: Colors.black,),
+            Icon(Icons.all_inclusive, size: 30, color: Colors.black,),
           ],
           onTap: (index) {
             setState(() {

@@ -42,7 +42,7 @@ Widget buildList2(BuildContext context, Query _query,  Map result, String type) 
               String minutEnd=map["timeslots"][i]["endTime"].toString().substring(3,5);
               list6.add("${map["timeslots"][i]["startTime"]} ${(int.parse(hourEnd)-int.parse(hourStart))*60 + (int.parse(minutEnd)-int.parse(minutStart))}");
             }
-            if(map["timeslots"][i]["sessions"].length==2){
+            if(map["timeslots"][i]["sessions"].length>1){
               list5.add(map["timeslots"][i]["sessions"][1]["items"][0]);
               String hourStart=map["timeslots"][i]["startTime"].toString().substring(0,2);
               String minutStart=map["timeslots"][i]["startTime"].toString().substring(3,5);
