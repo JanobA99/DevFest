@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gtg_tashkent/Screens/TeamScreen.dart';
+import 'package:gtg_tashkent/Screens/teamScreen.dart';
 import 'package:gtg_tashkent/Screens/agendaScreen.dart';
 import 'package:gtg_tashkent/Screens/speakersScreen.dart';
 import 'package:gtg_tashkent/database.dart';
@@ -210,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               ),
                               GestureDetector(
                                 onTap: ()  {
-                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamScreen()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamListWidget()));
                                 },
                                 child: Column(
                                   children: <Widget>[
