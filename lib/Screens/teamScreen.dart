@@ -57,7 +57,7 @@ List<Widget> widgetIcon=[];
   List list;
   @override
   void initState() {
-    Database.queryTeam().then((Query query) {
+    Database.queryTeam0().then((Query query) {
       setState(() {
         _query = query;
       });
@@ -220,7 +220,7 @@ class _TeamScreen2State extends State<TeamScreen2> {
   List list;
   @override
   void initState() {
-    Database.queryTeam2().then((Query query) {
+    Database.queryTeam1().then((Query query) {
       setState(() {
         _query = query;
       });
@@ -239,6 +239,12 @@ class _TeamScreen2State extends State<TeamScreen2> {
     );
     if (_query != null) {
       body = new FirebaseAnimatedList(
+        defaultChild: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+            strokeWidth: 2.0,
+          ),
+        ),
         shrinkWrap: true,
         query: _query,
         itemBuilder: (

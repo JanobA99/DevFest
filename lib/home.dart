@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gtg_tashkent/Screens/sponsorsScreen.dart';
 import 'package:gtg_tashkent/Screens/teamScreen.dart';
 import 'package:gtg_tashkent/Screens/agendaScreen.dart';
 import 'package:gtg_tashkent/Screens/speakersScreen.dart';
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   List<Bubble> bubbles;
   final int numberOfBubbles = 100;
   final Color color = Colors.deepPurpleAccent;
-  final double maxBubbleSize = 10.0;
+  final double maxBubbleSize = 9.0;
 
   Future<Map> getDataSpeakers() async {
     result = (await FirebaseDatabase.instance.reference().child("speakers").once())
@@ -209,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 ),
                               ),
                                buildContainer(context, "Speakers", SpeakersScreen(), Icons.person, Colors.green, FontWeight.bold),
-                              buildContainer(context, "Team", TeamListWidget(), Icons.people, Colors.teal, FontWeight.bold),
+                              buildContainer(context, "Team", TeamListWidget(), Icons.people, Colors.deepPurple, FontWeight.bold),
                             ],
                           ),
                           SizedBox(
@@ -218,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              buildContainer(context, "Sponsors", TeamListWidget(), Icons.attach_money, Colors.deepPurple, FontWeight.normal),
+                              buildContainer(context, "Sponsors", SponsorsScreen(), Icons.attach_money, Colors.teal, FontWeight.normal),
                               buildContainer(context, "FAQ", TeamListWidget(), Icons.forum, Colors.brown, FontWeight.normal),
                               buildContainer(context, "Location", TeamListWidget(), Icons.location_on, Colors.blue, FontWeight.normal),
                             ],
