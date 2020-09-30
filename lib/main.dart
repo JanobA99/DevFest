@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gtg_tashkent/Screens/teamScreen.dart';
 import 'package:gtg_tashkent/home.dart';
 
 

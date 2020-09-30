@@ -85,7 +85,6 @@ List<Widget> widgetIcon=[];
             int index,
             ) {
           Map map = snapshot.value;
-          print(snapshot.value["socials"][0]["name"]);
           Future<void> _onOpen(String link) async {
             if (await canLaunch(link)) {
               await launch(link);
