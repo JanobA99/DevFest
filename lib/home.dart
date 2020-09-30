@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             children: <Widget>[
                               Container(
                                 height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/4,
+                                width: MediaQuery.of(context).size.width/3.95,
                                 child: ProgressButton(
                                   onPressed: (AnimationController controller) async {
                                       controller.forward();
@@ -207,64 +207,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/3.90,
-                                child: ProgressButton(
-                                  onPressed: (AnimationController controller) async {
-                                      controller.forward();
-                                  await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>SpeakersScreen()));
-                                    if (controller.isCompleted) {
-                                      controller.reverse();
-                                    } else {
-                                    }
-                                  },
-                                  color: Colors.yellow,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.person, color: Colors.green,),
-                                        Text('Speakers',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/3.95,
-                                child: ProgressButton(
-                                  onPressed: (AnimationController controller) async {
-                                    controller.forward();
-                                    await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamListWidget()));
-                                    if (controller.isCompleted) {
-                                      controller.reverse();
-                                    } else {
-                                    }
-                                  },
-                                  color: Colors.yellow,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.people, color: Colors.teal,),
-                                        Text('Team',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
+                               buildContainer(context, "Speakers", SpeakersScreen(), Icons.person, Colors.green, FontWeight.bold),
+                              buildContainer(context, "Team", TeamListWidget(), Icons.people, Colors.teal, FontWeight.bold),
                             ],
                           ),
                           SizedBox(
@@ -273,78 +217,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Container(
-                                height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/3.95,
-                                child: ProgressButton(
-                                  onPressed: (AnimationController controller) async {
-                                    controller.forward();
-                                    await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamListWidget()));
-                                    if (controller.isCompleted) {
-                                      controller.reverse();
-                                    } else {
-                                    }
-                                  },
-                                  color: Colors.yellow,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.attach_money, color: Colors.deepPurple,),
-                                        Text('Sponser',)
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/3.95,
-                                child: ProgressButton(
-                                  onPressed: (AnimationController controller) async {
-                                    controller.forward();
-                                    await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamListWidget()));
-                                    if (controller.isCompleted) {
-                                      controller.reverse();
-                                    } else {
-                                    }
-                                  },
-                                  color: Colors.yellow,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.forum, color: Colors.brown,),
-                                        Text('FAQ',)
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: MediaQuery.of(context).size.height/10,
-                                width: MediaQuery.of(context).size.width/3.95,
-                                child: ProgressButton(
-                                  onPressed: (AnimationController controller) async {
-                                    controller.forward();
-                                    await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>TeamListWidget()));
-                                    if (controller.isCompleted) {
-                                      controller.reverse();
-                                    } else {
-                                    }
-                                  },
-                                  color: Colors.yellow,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.location_on, color: Colors.blue,),
-                                        Text('Locate Us',)
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              buildContainer(context, "Sponsors", TeamListWidget(), Icons.attach_money, Colors.deepPurple, FontWeight.normal),
+                              buildContainer(context, "FAQ", TeamListWidget(), Icons.forum, Colors.brown, FontWeight.normal),
+                              buildContainer(context, "Location", TeamListWidget(), Icons.location_on, Colors.blue, FontWeight.normal),
                             ],
                           ),
                         ],
@@ -364,6 +239,38 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     ]
       ),
     );
+  }
+
+buildContainer(BuildContext context, String text, Widget widget, IconData icon, Color colorIcon, FontWeight fontWeight)  {
+    return Container(
+                              height: MediaQuery.of(context).size.height/10,
+                              width: MediaQuery.of(context).size.width/3.90,
+                              child: ProgressButton(
+                                onPressed: (AnimationController controller) async {
+                                    controller.forward();
+                                await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>widget));
+                                  if (controller.isCompleted) {
+                                    controller.reverse();
+                                  } else {
+                                  }
+                                },
+                                color: Colors.yellow,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(icon, color: colorIcon,),
+                                      Text(text,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: fontWeight
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
   }
 
   void updateBubblePosition() {
