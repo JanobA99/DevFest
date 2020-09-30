@@ -136,11 +136,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           bottomLeft: Radius.circular(32)
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height/1.58,
+                    height: MediaQuery.of(context).size.height*2/3.1,
                     child: SafeArea(
                       child: SingleChildScrollView(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height/3,
+                    height: MediaQuery.of(context).size.height/3.1,
                     padding: EdgeInsets.only(top: 22),
                     child: SingleChildScrollView(
                       child: Column(
@@ -179,6 +179,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 height: MediaQuery.of(context).size.height/10,
                                 width: MediaQuery.of(context).size.width/3.95,
                                 child: ProgressButton(
+                                  borderRadius: BorderRadius.all(Radius.circular(9),),
                                   onPressed: (AnimationController controller) async {
                                       controller.forward();
                                       await getDataSpeakers();
@@ -246,6 +247,7 @@ buildContainer(BuildContext context, String text, Widget widget, IconData icon, 
                               height: MediaQuery.of(context).size.height/10,
                               width: MediaQuery.of(context).size.width/3.90,
                               child: ProgressButton(
+                                borderRadius: BorderRadius.all(Radius.circular(9),),
                                 onPressed: (AnimationController controller) async {
                                     controller.forward();
                                 await  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>widget));
@@ -307,12 +309,12 @@ class Bubble {
   Bubble(Color colour, double maxBubbleSize) {
     this.colour = colour.withOpacity(Random().nextDouble());
     this.direction = Random().nextDouble() * 360;
-    this.speed = 12;
+    this.speed = 8;
     this.radius = Random().nextDouble() * maxBubbleSize;
     new Future.delayed(new Duration(seconds: 1), () async {
-      this.speed=10;
+      this.speed=6;
     });
-    new Future.delayed(new Duration(seconds: 5), () async {
+    new Future.delayed(new Duration(seconds: 2), () async {
       this.speed=1;
     });
   }
