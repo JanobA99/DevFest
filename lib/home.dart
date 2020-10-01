@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gtg_tashkent/Screens/locationScreen.dart';
 import 'package:gtg_tashkent/Screens/sponsorsScreen.dart';
 import 'package:gtg_tashkent/Screens/teamScreen.dart';
 import 'package:gtg_tashkent/Screens/agendaScreen.dart';
@@ -159,7 +160,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 )
                               ],
                             ),
-                            Image.asset("assets/dev.png"),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset("assets/dev.png"),
+                              ],
+                            ),
                             Container(padding: EdgeInsets.all(7),child: Text("   DevFests are community-led, deleveloper events hosted by GDG   chapters around the globe focused on community building & learning about Google's technologies. Each DevFest is inspired by and uniquely tailored to the needs of the developer community and region that hosts it", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),))
                           ],
                         ),
@@ -221,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             children: <Widget>[
                               buildContainer(context, "Sponsors", SponsorsScreen(), Icons.attach_money, Colors.teal, FontWeight.normal),
                               buildContainer(context, "FAQ", TeamListWidget(), Icons.forum, Colors.brown, FontWeight.normal),
-                              buildContainer(context, "Location", TeamListWidget(), Icons.location_on, Colors.blue, FontWeight.normal),
+                              buildContainer(context, "Location", LocationScreen(), Icons.location_on, Colors.blue, FontWeight.normal),
                             ],
                           ),
                         ],
@@ -312,9 +318,6 @@ class Bubble {
     this.direction = Random().nextDouble() * 360;
     this.speed = 8;
     this.radius = Random().nextDouble() * maxBubbleSize;
-    new Future.delayed(new Duration(seconds: 1), () async {
-      this.speed=6;
-    });
     new Future.delayed(new Duration(seconds: 2), () async {
       this.speed=1;
     });

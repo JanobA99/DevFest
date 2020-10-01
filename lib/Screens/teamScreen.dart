@@ -76,6 +76,12 @@ List<Widget> widgetIcon=[];
     );
     if (_query != null) {
       body = new FirebaseAnimatedList(
+        defaultChild: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+            strokeWidth: 2.0,
+          ),
+        ),
         shrinkWrap: true,
         query: _query,
         itemBuilder: (
