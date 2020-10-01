@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gtg_tashkent/Screens/faqScreen.dart';
 import 'package:gtg_tashkent/Screens/locationScreen.dart';
 import 'package:gtg_tashkent/Screens/sponsorsScreen.dart';
 import 'package:gtg_tashkent/Screens/teamScreen.dart';
@@ -226,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               buildContainer(context, "Sponsors", SponsorsScreen(), Icons.attach_money, Colors.teal, FontWeight.normal),
-                              buildContainer(context, "FAQ", TeamListWidget(), Icons.forum, Colors.brown, FontWeight.normal),
+                              buildContainer(context, "FAQ", FAQScreen(), Icons.forum, Colors.brown, FontWeight.normal),
                               buildContainer(context, "Location", LocationScreen(), Icons.location_on, Colors.blue, FontWeight.normal),
                             ],
                           ),

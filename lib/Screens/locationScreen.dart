@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 
 
@@ -26,11 +27,15 @@ class _LocationScreenState extends State<LocationScreen> {
         width: 80.0,
         height: 80.0,
         point: LatLng(41.3426441, 69.3377809),
-        builder: (ctx) => Container(
-          child: Icon(Icons.location_on,
-            color: Colors.red,
-            size: 75,
-            key: ObjectKey(Colors.blue),)
+        builder: (ctx) => GestureDetector(
+          onTap: ()=>MapsLauncher.launchCoordinates(
+              41.3426441, 69.3377809, 'IT Park are here'),
+          child: Container(
+            child: Icon(Icons.location_on,
+              color: Colors.red,
+              size: 50,
+              key: ObjectKey(Colors.blue),)
+          ),
         ),
       ),
     ];
