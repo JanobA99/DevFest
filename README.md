@@ -14,6 +14,8 @@ The user can see the event on google map in "Find your way".
 
 The user can search for your questions and the answers to them.
 
+zur
+
 A JSON file has been imported to my Firebase account.
 
 Firebase is connected to my app.
