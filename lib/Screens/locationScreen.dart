@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:gtg_tashkent/home.dart';
 import 'package:latlong/latlong.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
@@ -18,8 +19,8 @@ class _LocationScreenState extends State<LocationScreen> {
       OverlayImage(
           bounds: LatLngBounds(LatLng(41.3426441, 69.3377809), LatLng(41.342, 69.3367)),
           opacity: 0.8,
-          imageProvider: NetworkImage(
-              'https://www.uzdaily.uz/storage/img/Askar-foto/262A6847.jpg')),
+          imageProvider: AssetImage(
+              'assets/itPark.jpeg')),
     ];
 
     var markers = <Marker>[
@@ -42,19 +43,36 @@ class _LocationScreenState extends State<LocationScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+        ),
         toolbarHeight: 35,
-        backgroundColor: Colors.yellow,
-        title: Text("Locate Us"),
+        backgroundColor: dark ? Colors.black : Colors.yellow,
+        title: Text("Locate Us",  style: TextStyle(color: dark ? Colors.white : Colors.black,),),
         centerTitle: true,
         actions: [
-          Icon(Icons.lightbulb_outline),
-          SizedBox(
-            width: 10,
-          ),
-          Icon(Icons.share),
-          SizedBox(
-            width: 10,
-          ),
+          IconButton(
+            icon: Icon(dark
+                ? Icons.lightbulb_outline
+                : Icons.lightbulb_outline,
+              color:  dark ? Colors.white : Colors.black,),
+            onPressed: (){
+              if(dark){
+                setState(() {
+                  dark=false;
+                });
+              }
+              else{
+                setState(() {
+                  dark=true;
+                });
+              }
+            },),
+          IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
+
         ],
       ),
       body: Column(

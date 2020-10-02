@@ -60,11 +60,11 @@ class _SpeakersScreenState extends State<SpeakersScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
+                    Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle( color: dark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
                     Text('${map['title']}.'.trim(), style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic),)
                   ],
                 ),
-                subtitle: Text("${map['shortBio']}".trim(),  maxLines: 2, style: TextStyle( fontSize: 10),),
+                subtitle: Text("${map['shortBio']}".trim(),  maxLines: 2, style: TextStyle( fontSize: 10, color: dark ? Colors.white : Colors.black,),),
                 onTap: () {
 
                 },
@@ -76,8 +76,10 @@ class _SpeakersScreenState extends State<SpeakersScreen> {
           );
         },
       );
+
     }
     return Scaffold(
+      backgroundColor: dark ? Colors.white12 : Colors.white,
         appBar: AppBar(
           leading: IconButton(
             onPressed: (){
@@ -86,14 +88,14 @@ class _SpeakersScreenState extends State<SpeakersScreen> {
             icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
           ),
           toolbarHeight: 35,
-          backgroundColor:dark ? Colors.black : Colors.yellow,
+          backgroundColor: dark ? Colors.black : Colors.yellow,
           title: Text("Speakers", style: TextStyle(color: dark ? Colors.white : Colors.black,),),
           centerTitle: true,
           actions: [
             IconButton(
               icon: Icon(dark
                   ? Icons.lightbulb_outline
-                  : Icons.format_list_bulleted,
+                  : Icons.lightbulb_outline,
                 color:  dark ? Colors.white : Colors.black,),
               onPressed: (){
                 if(dark){
@@ -108,7 +110,6 @@ class _SpeakersScreenState extends State<SpeakersScreen> {
                 }
               },),
             IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
-
           ],
         ),
         body: body

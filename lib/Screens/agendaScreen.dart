@@ -37,7 +37,7 @@ class _AgendaListWidgetState extends State<AgendaListWidget> {
           IconButton(
             icon: Icon(dark
                 ? Icons.lightbulb_outline
-                : Icons.format_list_bulleted,
+                : Icons.lightbulb_outline,
               color:  dark ? Colors.white : Colors.black,),
             onPressed: (){
               if(dark){
@@ -61,7 +61,7 @@ class _AgendaListWidgetState extends State<AgendaListWidget> {
           color: dark ? Colors.black : Colors.yellow,
           height: 50,
           buttonBackgroundColor: dark ? Colors.black : Colors.yellow,
-          backgroundColor: dark ? Colors.white70 : Colors.white,
+          backgroundColor: dark ? Colors.white12 : Colors.white,
           items: <Widget>[
             Icon(Icons.cloud, size: 30, color: dark ? Colors.white : Colors.black,),
             Icon(Icons.smartphone, size: 30, color: dark ? Colors.white : Colors.black,),
@@ -230,6 +230,6 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
       },
     );
   }
-  return Container(color: dark ? Colors.white70 : Colors.white,child: body);
+  return Container(color: dark ? Colors.white12 : Colors.white,child: body);
 
 }}

@@ -150,14 +150,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("                     "),
+                                Text("                       "),
                                 Text("Home", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color:  dark ? Colors.white : Colors.black,),),
                                 Row(
                                   children: [
                                     IconButton(
                                   icon: Icon(dark
                                       ? Icons.lightbulb_outline
-                                      : Icons.format_list_bulleted,
+                                      : Icons.lightbulb_outline,
                                       color:  dark ? Colors.white : Colors.black,),
                                     onPressed: (){
                                       if(dark){
@@ -171,16 +171,21 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                         });
                                       }
                                     },),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
                                     IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
                                   ],
                                 )
                               ],
                             ),
-                            Image.asset(dark ? "assets/dev_dark.png" : "assets/dev.png"),
-                            Container(padding: EdgeInsets.all(7),child: Text("   DevFests are community-led, deleveloper events hosted by GDG   chapters around the globe focused on community building & learning about Google's technologies. Each DevFest is inspired by and uniquely tailored to the needs of the developer community and region that hosts it", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),))
+                            Column(
+                              children: [
+                                Image.asset(dark ? "assets/dev_dark.png" : "assets/dev.png"),
+                            Container(padding: EdgeInsets.symmetric(horizontal: 17),child: Text("   DevFests are community-led, deleveloper events hosted by GDG   chapters around the globe focused on community building & learning about Google's technologies. Each DevFest is inspired by and uniquely tailored to the needs of the developer community and region that hosts it",
+                              textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),)),
+                              ],
+                            ),
+                         SizedBox(
+                           height: 32,
+                         )
                           ],
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gtg_tashkent/home.dart';
 
 class FAQScreen extends StatefulWidget {
   @override
@@ -19,39 +20,50 @@ List<String> des=["GDG Tashkent is a proud organizer of DevFest Uzbekistan. Goog
 ];
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
+    return new Scaffold(
+        backgroundColor: dark ? Colors.white12 : Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+          ),
           toolbarHeight: 35,
-          backgroundColor: Colors.yellow,
-          title: Text("FAQ", style: TextStyle(color: Colors.black),),
+          backgroundColor: dark ? Colors.black : Colors.yellow,
+          title: Text("FAQ", style: TextStyle(color: dark ? Colors.white : Colors.black,),),
           centerTitle: true,
           actions: [
-            Icon(Icons.lightbulb_outline, color: Colors.black),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(Icons.share, color: Colors.black),
-            SizedBox(
-              width: 10,
-            ),
+        IconButton(
+        icon: Icon(dark
+        ? Icons.lightbulb_outline
+          : Icons.lightbulb_outline,
+          color:  dark ? Colors.white : Colors.black,),
+        onPressed: (){
+          if(dark){
+            setState(() {
+              dark=false;
+            });
+          }
+          else{
+            setState(() {
+              dark=true;
+            });
+          }
+        },),
+      IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
           ],
         ),
         body: ListView.builder(
           itemCount: title.length,
-            itemBuilder: (BuildContext context, int index)=> buildExpansionTile(context, title[index], des[index])
+            itemBuilder: (BuildContext context, int index)=>ExpansionTile(
+                title: new Text(title[index], style: TextStyle(fontWeight: FontWeight.bold, color: dark ? Colors.white : Colors.black,),),
+                backgroundColor:   ThemeData.light().backgroundColor ,
+                children: <Widget>[
+                  Container(padding: EdgeInsets.all(12),child: Text(des[index],  style: TextStyle( color: dark ? Colors.white : Colors.black,),))
+                ]
+            )
         ),
-      ),
     );
-  }
-
-  ExpansionTile buildExpansionTile(BuildContext context, String title, String des) {
-    return ExpansionTile(
-          title: new Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
-          backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-          children: <Widget>[
-           Container(padding: EdgeInsets.all(12),child: Text(des))
-          ]
-      );
   }
 }

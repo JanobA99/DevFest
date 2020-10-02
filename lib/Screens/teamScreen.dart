@@ -24,6 +24,7 @@ class _TeamListWidgetState extends State<TeamListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: dark ? Colors.white12 : Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){
@@ -32,14 +33,14 @@ class _TeamListWidgetState extends State<TeamListWidget> {
           icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
         ),
         toolbarHeight: 35,
-        backgroundColor: Colors.yellow,
+        backgroundColor: dark ? Colors.black : Colors.yellow,
         title: Text(_activePage==0 ? "Core Team" : "Program Committee", style: TextStyle(color: dark ? Colors.white : Colors.black,),),
         centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(dark
                 ? Icons.lightbulb_outline
-                : Icons.format_list_bulleted,
+                : Icons.lightbulb_outline,
               color:  dark ? Colors.white : Colors.black,),
             onPressed: (){
               if(dark){
@@ -57,17 +58,16 @@ class _TeamListWidgetState extends State<TeamListWidget> {
 
         ],
       ),
-      backgroundColor: Colors.white,
       body: _tabItems[_activePage],
       bottomNavigationBar: CurvedNavigationBar(
         index: _activePage,
-        color: Colors.yellow,
+        color: dark ? Colors.black : Colors.yellow,
         height: 50,
-        buttonBackgroundColor: Colors.yellow,
-        backgroundColor: Colors.white,
+        buttonBackgroundColor: dark ? Colors.black : Colors.yellow,
+        backgroundColor: dark ? Colors.black12 : Colors.white,
         items: <Widget>[
-          Icon(Icons.people, size: 30, color: Colors.black,),
-          Icon(Icons.people_outline, size: 30, color: Colors.black,),
+          Icon(Icons.people, size: 30,  color: dark ? Colors.white : Colors.black,),
+          Icon(Icons.people_outline, size: 30, color: dark ? Colors.white : Colors.black,),
         ],
         onTap: (index) {
           setState(() {
@@ -143,7 +143,7 @@ List<Widget> widgetIcon=[];
                       child: Center(
                         child: Column(
                           children: [
-                            Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                            Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),),
                             Text('${map['title']}.'.trim(), style: TextStyle(color: Colors.green, fontSize: 17, fontStyle: FontStyle.italic),),
                         snapshot.value["socials"].length>0 ? Container(
                     decoration: new BoxDecoration(
@@ -294,7 +294,7 @@ class _TeamScreen2State extends State<TeamScreen2> {
                     child: Center(
                       child: Column(
                         children: [
-                          Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                          Text('${map['name']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),),
                           Text('${map['title']}.'.trim(), style: TextStyle(color: Colors.green, fontSize: 17, fontStyle: FontStyle.italic),),
                           snapshot.value["socials"].length>0 ? Container(
                             decoration: new BoxDecoration(

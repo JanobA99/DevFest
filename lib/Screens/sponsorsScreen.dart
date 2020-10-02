@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gtg_tashkent/database.dart';
+import 'package:gtg_tashkent/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SponsorsScreen extends StatefulWidget {
@@ -92,20 +93,38 @@ GestureDetector(
       }
     }
     return Scaffold(
+        backgroundColor: dark ? Colors.white54 : Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+          ),
           toolbarHeight: 35,
-          backgroundColor: Colors.yellow,
-          title: Text("Program Committee"),
+          backgroundColor: dark ? Colors.black : Colors.yellow,
+          title: Text("Program Committee",style: TextStyle(color: dark ? Colors.white : Colors.black, fontSize: 19),),
           centerTitle: true,
           actions: [
-            Icon(Icons.lightbulb_outline),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(Icons.share),
-            SizedBox(
-              width: 10,
-            ),
+            IconButton(
+              icon: Icon(dark
+                  ? Icons.lightbulb_outline
+                  : Icons.lightbulb_outline,
+                color:  dark ? Colors.white : Colors.black,),
+              onPressed: (){
+                if(dark){
+                  setState(() {
+                    dark=false;
+                  });
+                }
+                else{
+                  setState(() {
+                    dark=true;
+                  });
+                }
+              },),
+            IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
+
           ],
         ),
         body: Stack(children:[
