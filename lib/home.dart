@@ -183,9 +183,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),)),
                               ],
                             ),
-                         SizedBox(
-                           height: 32,
-                         )
                           ],
                         ),
                       ),
@@ -335,7 +332,7 @@ class Bubble {
   Bubble(Color colour, double maxBubbleSize) {
     this.colour = colour.withOpacity(Random().nextDouble());
     this.direction = Random().nextDouble() * 360;
-    this.speed = 8;
+    this.speed = 7;
     this.radius = Random().nextDouble() * maxBubbleSize;
     new Future.delayed(new Duration(seconds: 2), () async {
       this.speed=1;

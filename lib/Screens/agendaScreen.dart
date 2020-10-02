@@ -54,14 +54,14 @@ class _AgendaListWidgetState extends State<AgendaListWidget> {
           IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
         ],
       ),
-      backgroundColor: dark ? Colors.white70 : Colors.white,
+      backgroundColor: dark ? Colors.white12 : Colors.white,
         body: _tabItems[_activePage],
         bottomNavigationBar: CurvedNavigationBar(
           index: _activePage,
           color: dark ? Colors.black : Colors.yellow,
           height: 50,
           buttonBackgroundColor: dark ? Colors.black : Colors.yellow,
-          backgroundColor: dark ? Colors.white12 : Colors.white,
+          backgroundColor: dark ? Colors.black12 : Colors.white,
           items: <Widget>[
             Icon(Icons.cloud, size: 30, color: dark ? Colors.white : Colors.black,),
             Icon(Icons.smartphone, size: 30, color: dark ? Colors.white : Colors.black,),
@@ -158,17 +158,17 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${map['title']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                        Text('${map['title']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
                         Text(name, style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic),)
                       ],
                     ),
-                    subtitle: Text("${map['description']}".trim(),  maxLines: 2, style: TextStyle( fontSize: 10),),
+                    subtitle: Text("${map['description']}".trim(),  maxLines: 2, style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 10),),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("${time.substring(0,3)} ${time.substring(time.length-11,time.length-8)}"),
-                        Text("${time.substring(time.length-8, time.length-2)}"),
-                        Text("${time.substring(time.length-2)}mins", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                        Text("${time.substring(0,3)} ${time.substring(time.length-11,time.length-8)}",  style: TextStyle(color: Colors.deepOrange),),
+                        Text("${time.substring(time.length-8, time.length-2)}",  style: TextStyle(color: Colors.deepOrange),),
+                        Text("${time.substring(time.length-2)}mins", style: TextStyle(color: Colors.deepOrange, fontSize: 15, fontWeight: FontWeight.bold),),
                       ],
                     ),
                     onTap: () {
@@ -203,17 +203,17 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${map['title']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                    Text('${map['title']}.'.trim(), maxLines:2, style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
                     Text(name, style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic),)
                   ],
                 ) : Container(),
-                subtitle: tag!=null ? Text("${map['description']}".trim(),  maxLines: 2, style: TextStyle( fontSize: 10),):Container(),
+                subtitle: tag!=null ? Text("${map['description']}".trim(),  maxLines: 2,style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 10),):Container(),
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${time.substring(0,3)} ${time.substring(time.length-11,time.length-9)}"),
-                    Text("${time.substring(time.length-8, time.length-3)}"),
-                    Text("${time.substring(time.length-3)}mins", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                    Text("${time.substring(0,3)} ${time.substring(time.length-11,time.length-9)}",  style: TextStyle(color: Colors.deepOrange),),
+                    Text("${time.substring(time.length-8, time.length-3)}",  style: TextStyle(color: Colors.deepOrange),),
+                    Text("${time.substring(time.length-3)}mins", style: TextStyle(color: Colors.deepOrange, fontSize: 15, fontWeight: FontWeight.bold),),
                   ],
                 ),
                 onTap: () {
@@ -230,6 +230,6 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
       },
     );
   }
-  return Container(color: dark ? Colors.white12 : Colors.white,child: body);
+  return body;
 
 }}
