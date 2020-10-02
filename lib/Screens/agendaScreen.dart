@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/database.dart';
+import 'package:gtg_tashkent/home.dart';
 Map result;
 Map timeMap;
 class AgendaListWidget extends StatefulWidget {
@@ -21,19 +22,51 @@ class _AgendaListWidgetState extends State<AgendaListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+        ),
+        toolbarHeight: 35,
+        backgroundColor: dark ? Colors.black : Colors.yellow,
+        title: Text(_activePage==0 ? "Cloud" : _activePage==1 ? "Mobile": _activePage==2 ? "Web" : "All",  style: TextStyle(color: dark ? Colors.white : Colors.black,),),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(dark
+                ? Icons.lightbulb_outline
+                : Icons.format_list_bulleted,
+              color:  dark ? Colors.white : Colors.black,),
+            onPressed: (){
+              if(dark){
+                setState(() {
+                  dark=false;
+                });
+              }
+              else{
+                setState(() {
+                  dark=true;
+                });
+              }
+            },),
+          IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
+        ],
+      ),
+      backgroundColor: dark ? Colors.white70 : Colors.white,
         body: _tabItems[_activePage],
         bottomNavigationBar: CurvedNavigationBar(
           index: _activePage,
-          color: Colors.yellow,
+          color: dark ? Colors.black : Colors.yellow,
           height: 50,
-          buttonBackgroundColor: Colors.yellow,
-          backgroundColor: Colors.white,
+          buttonBackgroundColor: dark ? Colors.black : Colors.yellow,
+          backgroundColor: dark ? Colors.white70 : Colors.white,
           items: <Widget>[
-            Icon(Icons.cloud, size: 30, color: Colors.black,),
-            Icon(Icons.smartphone, size: 30, color: Colors.black,),
-            Icon(Icons.web, size: 30, color: Colors.black,),
-            Icon(Icons.all_inclusive, size: 30, color: Colors.black,),
+            Icon(Icons.cloud, size: 30, color: dark ? Colors.white : Colors.black,),
+            Icon(Icons.smartphone, size: 30, color: dark ? Colors.white : Colors.black,),
+            Icon(Icons.web, size: 30, color: dark ? Colors.white : Colors.black,),
+            Icon(Icons.all_inclusive, size: 30, color: dark ? Colors.white : Colors.black,),
           ],
           onTap: (index) {
             setState(() {
@@ -70,7 +103,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
   Widget build(BuildContext context) {
     return buildList(context, _query, result, widget.type);
   }
-}
+
 
 Widget buildList(BuildContext context, Query _query,  Map result, String type) {
   String name;
@@ -197,23 +230,6 @@ Widget buildList(BuildContext context, Query _query,  Map result, String type) {
       },
     );
   }
-  return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 35,
-        backgroundColor: Colors.yellow,
-        title: Text(type=="Android"? "Mobile": type),
-        centerTitle: true,
-        actions: [
-          Icon(Icons.lightbulb_outline),
-          SizedBox(
-            width: 10,
-          ),
-          Icon(Icons.share),
-          SizedBox(
-            width: 10,
-          ),
-        ],
-      ),
-      body: body
-  );
-}
+  return Container(color: dark ? Colors.white70 : Colors.white,child: body);
+
+}}

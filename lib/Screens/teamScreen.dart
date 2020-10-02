@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:gtg_tashkent/database.dart';
+import 'package:gtg_tashkent/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TeamListWidget extends StatefulWidget {
@@ -23,6 +24,39 @@ class _TeamListWidgetState extends State<TeamListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+        ),
+        toolbarHeight: 35,
+        backgroundColor: Colors.yellow,
+        title: Text(_activePage==0 ? "Core Team" : "Program Committee", style: TextStyle(color: dark ? Colors.white : Colors.black,),),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(dark
+                ? Icons.lightbulb_outline
+                : Icons.format_list_bulleted,
+              color:  dark ? Colors.white : Colors.black,),
+            onPressed: (){
+              if(dark){
+                setState(() {
+                  dark=false;
+                });
+              }
+              else{
+                setState(() {
+                  dark=true;
+                });
+              }
+            },),
+          IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
+
+        ],
+      ),
       backgroundColor: Colors.white,
       body: _tabItems[_activePage],
       bottomNavigationBar: CurvedNavigationBar(
@@ -192,25 +226,7 @@ List<Widget> widgetIcon=[];
         },
       );
     }
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 35,
-          backgroundColor: Colors.yellow,
-          title: Text("Core Team"),
-          centerTitle: true,
-          actions: [
-            Icon(Icons.lightbulb_outline),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(Icons.share),
-            SizedBox(
-              width: 10,
-            ),
-          ],
-        ),
-        body: body
-    );
+    return  body;
   }
 }
 
@@ -260,7 +276,6 @@ class _TeamScreen2State extends State<TeamScreen2> {
             int index,
             ) {
           Map map = snapshot.value;
-          print(snapshot.value["socials"][0]["name"]);
           Future<void> _onOpen(String link) async {
             if (await canLaunch(link)) {
               await launch(link);
@@ -362,24 +377,6 @@ class _TeamScreen2State extends State<TeamScreen2> {
         },
       );
     }
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 35,
-          backgroundColor: Colors.yellow,
-          title: Text("Program Committee"),
-          centerTitle: true,
-          actions: [
-            Icon(Icons.lightbulb_outline),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(Icons.share),
-            SizedBox(
-              width: 10,
-            ),
-          ],
-        ),
-        body: body
-    );
+    return  body;
   }
 }

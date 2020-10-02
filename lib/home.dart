@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:gtg_tashkent/Screens/faqScreen.dart';
 import 'package:gtg_tashkent/Screens/locationScreen.dart';
 import 'package:gtg_tashkent/Screens/sponsorsScreen.dart';
@@ -12,7 +13,7 @@ import 'package:gtg_tashkent/Screens/speakersScreen.dart';
 import 'package:gtg_tashkent/database.dart';
 import 'package:progress_indicator_button/progress_button.dart';
 
-
+bool dark=false;
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -120,23 +121,24 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow,
+      backgroundColor: dark ? Color.fromRGBO(31, 33, 36,216) : Colors.yellow,
       body: Stack(
         children:[
           Container(
-            color: Colors.yellow,
+            color: dark ? Color.fromRGBO(31, 33, 36,216) : Colors.yellow,
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: dark ? Colors.white10 : Colors.white,
                       borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(32),
-                          bottomLeft: Radius.circular(32)
+                          bottomRight: Radius.circular(40),
+                          bottomLeft: Radius.circular(40)
                       ),
                     ),
                     height: MediaQuery.of(context).size.height*2/3.1,
@@ -149,24 +151,35 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("                     "),
-                                Text("Home", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
+                                Text("Home", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color:  dark ? Colors.white : Colors.black,),),
                                 Row(
                                   children: [
-                                    Icon(Icons.lightbulb_outline),
+                                    IconButton(
+                                  icon: Icon(dark
+                                      ? Icons.lightbulb_outline
+                                      : Icons.format_list_bulleted,
+                                      color:  dark ? Colors.white : Colors.black,),
+                                    onPressed: (){
+                                      if(dark){
+                                        setState(() {
+                                          dark=false;
+                                        });
+                                      }
+                                      else{
+                                        setState(() {
+                                          dark=true;
+                                        });
+                                      }
+                                    },),
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    Icon(Icons.share),
+                                    IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
                                   ],
                                 )
                               ],
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset("assets/dev.png"),
-                              ],
-                            ),
+                            Image.asset(dark ? "assets/dev_dark.png" : "assets/dev.png"),
                             Container(padding: EdgeInsets.all(7),child: Text("   DevFests are community-led, deleveloper events hosted by GDG   chapters around the globe focused on community building & learning about Google's technologies. Each DevFest is inspired by and uniquely tailored to the needs of the developer community and region that hosts it", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 11),))
                           ],
                         ),
@@ -199,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                       controller.forward();
                                     }
                                   },
-                                  color: Colors.yellow,
+                                  color:  dark ? Colors.white10 : Colors.yellow,
                                   child: SingleChildScrollView(
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                         Icon(Icons.access_time, color: Colors.red,),
                                         Text('Agenda',
                                           style: TextStyle(
-                                              color: Colors.black,
+                                              color:  dark ? Colors.white : Colors.black,
                                               fontWeight: FontWeight.bold
                                           ),
                                         )
@@ -264,7 +277,7 @@ buildContainer(BuildContext context, String text, Widget widget, IconData icon, 
                                   } else {
                                   }
                                 },
-                                color: Colors.yellow,
+                                color:  dark ? Colors.white10 : Colors.yellow,
                                 child: SingleChildScrollView(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -272,7 +285,7 @@ buildContainer(BuildContext context, String text, Widget widget, IconData icon, 
                                       Icon(icon, color: colorIcon,),
                                       Text(text,
                                         style: TextStyle(
-                                            color: Colors.black,
+                                            color:  dark ? Colors.white : Colors.black,
                                             fontWeight: fontWeight
                                         ),
                                       )

@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:gtg_tashkent/database.dart';
+import 'package:gtg_tashkent/home.dart';
 
 class SpeakersScreen extends StatefulWidget {
   final String type;
@@ -78,19 +79,36 @@ class _SpeakersScreenState extends State<SpeakersScreen> {
     }
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.arrow_back, color: dark ? Colors.white : Colors.black,),
+          ),
           toolbarHeight: 35,
-          backgroundColor: Colors.yellow,
-          title: Text("Speakers"),
+          backgroundColor:dark ? Colors.black : Colors.yellow,
+          title: Text("Speakers", style: TextStyle(color: dark ? Colors.white : Colors.black,),),
           centerTitle: true,
           actions: [
-            Icon(Icons.lightbulb_outline),
-            SizedBox(
-              width: 10,
-            ),
-            Icon(Icons.share),
-            SizedBox(
-              width: 10,
-            ),
+            IconButton(
+              icon: Icon(dark
+                  ? Icons.lightbulb_outline
+                  : Icons.format_list_bulleted,
+                color:  dark ? Colors.white : Colors.black,),
+              onPressed: (){
+                if(dark){
+                  setState(() {
+                    dark=false;
+                  });
+                }
+                else{
+                  setState(() {
+                    dark=true;
+                  });
+                }
+              },),
+            IconButton(onPressed:(){},icon: Icon(Icons.share, color:  dark ? Colors.white : Colors.black,)),
+
           ],
         ),
         body: body
